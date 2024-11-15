@@ -1,0 +1,70 @@
+/* ERROR PAGE */
+.erreur-container {
+  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.erreur-container h1 {
+  margin: 2rem auto;
+  font-size: 3rem;
+  color: inherit;
+  text-align: center;
+}
+
+.erreur-container a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  text-align: center;
+}
+
+.erreur-container a::before, .erreur-container a::after {
+  color: var(--color-text) !important;
+  position: absolute;
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.erreur-container a:hover::before {
+  content: '▫';
+  top: 50%;
+  left: 0;
+  transform: translate(-150%, -50%);
+}
+
+.erreur-container a:hover::after {
+  content: '▫';
+  top: 50%;
+  right: 0;
+  transform: translate(150%, -50%);
+}
+
+.erreur-container a:visited {
+  color: inherit;
+}
+
+/* MOBILE */
+@media screen and (max-width: 1000px) {
+  .erreur-container {
+    min-height: calc(100vh - 12rem);
+  }
+}
+
+@media screen and (max-width: 636px) {
+  .erreur-container {
+    min-height: calc(100vh - 5rem);
+  }
+}
+
+@media screen and (max-width: 270px) {
+  .erreur-container {
+    min-height: calc(100vh - 8rem);
+  }
+}

@@ -1,0 +1,199 @@
+/* RECETTES LIST */
+.recettesListContainer {
+  margin: 0 auto;
+  padding: 6rem 0;
+  max-width: 1000px;
+}
+
+.recetteListHeader {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  text-decoration: underline .2rem;
+}
+
+.sortingButtonContainer {
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sortingButtonContainer button {
+  margin: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  background: none;
+  border: none;
+  position: relative;
+  font-family: 'RobotoMono', serif;
+}
+
+.sortingButtonContainer button:first-of-type {
+  min-width: 105px;
+}
+
+.sortingButtonContainer svg {
+  width: 2rem;
+  fill: var(--color-text);
+}
+
+@keyframes hoverAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sortingButtonContainer button:hover {
+  cursor: pointer;
+}
+
+.sortingButtonContainer button:hover:not(.button-active)::after {
+  content: '▫';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 70%);
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.button-active::after {
+  content: '▪';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 70%);
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.recettesList {
+  width: 100%;
+  margin: 2rem auto 0 auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recettesList .recette {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.recettesList .recette a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.recettesList .recette a::before, .recettesList .recette a::after {
+  color: var(--color-text) !important;
+  position: absolute;
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.recettesList .recette a:hover::before {
+  content: '▫';
+  top: 50%;
+  left: 0;
+  transform: translate(-150%, -50%);
+}
+
+.recettesList .recette a:hover::after {
+  content: '▫';
+  top: 50%;
+  right: 0;
+  transform: translate(150%, -50%);
+}
+
+.recettesList .recette a:visited {
+  color: inherit;
+}
+
+.recetteInfos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recetteInfos p {
+  margin: 0 .5rem;
+  font-size: 1.2rem;
+  font-family: "RobotoMono", serif;
+  font-style: italic;
+}
+
+.recettesList .recette hr {
+  margin: 1rem auto 0;
+  width: 5rem;
+  border-top: .15rem solid var(--color-text);
+}
+
+/* MOBILE */
+@media screen and (max-width: 1000px) {
+  .recettesListContainer {
+    padding: 6rem 2rem;
+  }
+}
+
+@media screen and (max-width: 636px) {
+  .recettesListContainer {
+    width: 100%;
+  }
+
+  .sortingButtonContainer {
+    width: 100%;
+  }
+
+  .sortingButtonContainer button {
+    margin: 1rem;
+    font-size: .8rem;
+    width: 33%;
+  }
+
+  .sortingButtonContainer button:first-of-type {
+    min-width: fit-content;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .recettesListContainer {
+    padding: 2rem;
+  }
+
+  .sortingButtonContainer {
+    flex-direction: column;
+    margin: 2rem auto;
+  }
+
+  .sortingButtonContainer button {
+    width: fit-content;
+  }
+
+  .recettesList .recette a {
+    font-size: 1.75rem;
+  }
+
+  .recetteInfos p {
+    font-size: 1rem;
+  }
+}
+

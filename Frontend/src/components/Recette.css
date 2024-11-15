@@ -1,0 +1,239 @@
+/* RECETTE */
+.recetteContainer {
+  margin: 0 auto;
+  padding: 6rem 0;
+  max-width: 1000px;
+}
+
+.recetteHeader {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2.5rem;
+  word-break: break-word;
+  text-transform: uppercase;
+  text-decoration: underline .2rem;
+}
+
+.recetteInfosContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem auto;
+}
+
+.recetteInfosContainer p {
+  margin: 0 .5rem;
+  font-family: 'RobotoMono', serif;
+  font-size: 1.25rem;
+}
+
+.recetteInstructions {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.recetteIngredients, .recetteDirectives {
+  width: 50%;
+  margin: 0 2rem;
+}
+
+.recetteIngredients h1, .recetteDirectives h1 {
+  font-size: 2rem;
+  font-family: 'SyneMono', serif;
+}
+
+.recetteIngredients li, .recetteDirectives li {
+  margin: 2.5rem auto;
+  font-family: 'RobotoMono', serif;
+  font-size: 1.2rem;
+}
+
+.recetteIngredients h1 {
+  text-align: right;
+}
+
+.recetteIngredients ul {
+  width: fit-content;
+  margin-top: 1rem;
+  list-style: none;
+  float: right;
+  text-align: right;
+}
+
+.recetteDirectives ol {
+  width: fit-content;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: .2rem solid var(--color-text);
+  list-style: none;
+  counter-reset: item;
+}
+
+.recetteDirectives li {
+  counter-increment: item;
+  line-height: 2rem;
+}
+
+.recetteDirectives li:before {
+  display: inline-block;
+  margin-right: 1rem;
+  content: "▪ " counter(item) " ▪";
+  color: var(--color-text);
+  text-align: center;
+  font-family: 'SyneMono', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: underline .2rem;
+}
+
+.recetteIngredients li:first-of-type, .recetteDirectives li:first-of-type {
+  margin-top: 0;
+}
+
+.recetteIngredients li:last-of-type, .recetteDirectives li:last-of-type {
+  margin-bottom: 0;
+}
+
+.recetteHR {
+  margin: 6rem auto;
+  width: 100%;
+  border-top: .2rem solid var(--color-text);
+}
+
+/* DOWNLOAD BUTTON */
+.downloadButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6rem auto 0;
+  padding: 1rem 0;
+  width: 100%;
+  border-top: .2rem solid var(--color-text);
+  border-bottom: .2rem solid var(--color-text);
+}
+
+.downloadButton {
+  text-decoration: none;
+  color: inherit;
+  font-family: 'RobotoMono', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+@keyframes hoverAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.downloadButton::before, .downloadButton::after {
+  color: var(--color-text) !important;
+  position: absolute;
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.downloadButton:hover::before {
+  content: '▫';
+  bottom: 0;
+  left: 0;
+  transform: translate(-150%, -15%);
+}
+
+.downloadButton:hover::after {
+  content: '▫';
+  bottom: 0;
+  right: 0;
+  transform: translate(150%, -15%);
+}
+
+.downloadButton:visited {
+  color: inherit;
+}
+
+.downloadButton svg {
+  width: 1rem;
+  fill: var(--color-text);
+  margin-bottom: .5rem;
+}
+
+.downloadButton p {
+  font-size: .75rem;
+  display: flex;
+  align-items: center;
+}
+
+/* MOBILE */
+@media screen and (max-width: 1000px) {
+  .recetteContainer {
+    padding: 6rem 2rem;
+  }
+
+  .recetteInstructions {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .recetteInfosContainer {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .recetteInstructions {
+    flex-direction: column;
+  }
+
+  .recetteInfosContainer {
+    margin: 6rem auto;
+  }
+
+  .recetteIngredients, .recetteDirectives {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .recetteDirectives {
+    margin-top: 6rem;
+  }
+
+  .recetteIngredients h1, .recetteDirectives h1 {
+    text-align: center;
+  }
+
+  .recetteIngredients ul {
+    float: initial;
+    width: 100%;
+  }
+
+  .recetteIngredients li {
+    text-align: center;
+  }
+
+  .recetteDirectives ol {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .recetteDirectives li {
+    text-align: justify;
+    hyphens: auto;
+    word-spacing: -0.05em;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .recetteContainer {
+    padding: 2rem;
+  }
+}

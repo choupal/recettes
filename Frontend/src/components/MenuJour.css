@@ -1,0 +1,61 @@
+/* MENU JOUR */
+.menuJour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menuRecette {
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menuRecette a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: inherit;
+  word-break: break-word;
+  text-align: center;
+  position: relative;
+}
+
+.menuRecette a::before, .menuRecette a::after {
+  color: var(--color-text) !important;
+  position: absolute;
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.menuRecette a:hover::before {
+  content: '▫';
+  top: 50%;
+  left: 0;
+  transform: translate(-150%, -50%);
+}
+
+.menuRecette a:hover::after {
+  content: '▫';
+  top: 50%;
+  right: 0;
+  transform: translate(150%, -50%);
+}
+
+.menuRecette a:visited {
+  color: inherit;
+}
+
+.menuRecette h2 {
+  font-family: 'RobotoMono', serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-style: normal;
+}
+
+.menuRecette p {
+  font-family: 'RobotoMono', serif;
+  font-size: 1rem;
+}

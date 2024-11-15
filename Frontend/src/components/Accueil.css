@@ -1,0 +1,78 @@
+/* ACCUEIL */
+.accueilContainer {
+  margin: 0 auto;
+  padding: 6rem 0;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recetteJourContainer, .menuJourContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.recetteJourContainer {
+  padding-right: 2rem;
+}
+
+.menuJourContainer {
+  padding-left: 2rem;
+}
+
+.accueilHeader {
+  font-size: 2.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline .2rem;
+}
+
+.accueilSubHeader {
+  margin: .5rem;
+  text-align: center;
+  font-family: "RobotoMono", serif;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.recettesHR {
+  display: none;
+  margin: 6rem auto;
+  width: 50%;
+  border-top: .2rem solid var(--color-text);
+}
+
+.sectionHR {
+  margin: 6rem auto;
+  width: 100%;
+  border-top: .2rem solid var(--color-text);
+}
+
+/* MOBILE */
+@media screen and (max-width: 1000px) {
+  .accueilContainer {
+    flex-direction: column;
+    width: 100%;
+    padding: 6rem 2rem;
+  }
+
+  .recetteJourContainer, .menuJourContainer {
+    width: 100%;
+    padding: 0;
+  }
+
+  .recettesHR {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .accueilContainer {
+    padding: 2rem;
+  }
+}

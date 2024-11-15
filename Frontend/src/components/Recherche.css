@@ -1,0 +1,145 @@
+/* RECHERCHE */
+.rechercheContainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.rechercheHeader {
+  font-size: 2.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline .2rem;
+}
+
+.rechercheInput {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.rechercheContainer input {
+  display: inline-block;
+  margin: 0;
+  width: 300px;
+  padding: .5rem;
+  color: var(--color-text);
+  text-align: center;
+  font-size: 1rem;
+  font-family: "RobotoMono", serif;
+  border: initial;
+  background-color: var(--background);
+}
+
+.beforeInput::before, .afterInput::after {
+  display: inline-block;
+  content: '▫';
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.rechercheContainer input:focus-visible {
+  outline: none;
+}
+
+.rechercheContainer .rechercheRecettesListContainer {
+  margin: 0;
+  padding: 0;
+}
+
+.rechercheRecettesList {
+  width: 100%;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rechercheRecettesList .rechercheRecette {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.rechercheRecettesList .rechercheRecette a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.rechercheRecettesList .rechercheRecette a::before, .rechercheRecettesList .rechercheRecette a::after {
+  color: var(--color-text) !important;
+  position: absolute;
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.rechercheRecettesList .rechercheRecette a:hover::before {
+  content: '▫';
+  top: 50%;
+  left: 0;
+  transform: translate(-150%, -50%);
+}
+
+.rechercheRecettesList .rechercheRecette a:hover::after {
+  content: '▫';
+  top: 50%;
+  right: 0;
+  transform: translate(150%, -50%);
+}
+
+.rechercheRecettesList .rechercheRecette a:visited {
+  color: inherit;
+}
+
+.rechercheRecetteInfos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rechercheRecetteInfos p {
+  margin: 0 .5rem;
+  font-size: 1.2rem;
+  font-family: "RobotoMono", serif;
+  font-style: italic;
+}
+
+.rechercheRecettesList .rechercheRecette hr {
+  margin: 1rem auto 0;
+  width: 5rem;
+  border-top: .15rem solid var(--color-text);
+}
+
+/* MOBILE */
+@media screen and (max-width: 600px) {
+  .rechercheContainer {
+    margin: 2rem auto;
+  }
+
+  .rechercheContainer input {
+    margin: 2rem auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .rechercheContainer input {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 340px) {
+  .rechercheRecettesList .rechercheRecette a {
+    font-size: 1.75rem;
+  }
+
+  .rechercheRecetteInfos p {
+    font-size: 1rem;
+  }
+}
+

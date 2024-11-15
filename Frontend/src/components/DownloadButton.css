@@ -1,0 +1,51 @@
+/* DOWNLOAD BUTTON */
+.downloadButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem auto;
+}
+
+.downloadButton {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: 'RobotoMono', serif;
+}
+
+.downloadButton::before, .downloadButton::after {
+  color: var(--color-text) !important;
+  position: absolute;
+  animation: hoverAnim .75s ease-in-out forwards;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.downloadButton:hover::before {
+  content: '▫';
+  bottom: 0;
+  left: 0;
+  transform: translate(-150%, 25%);
+}
+
+.downloadButton:hover::after {
+  content: '▫';
+  bottom: 0;
+  right: 0;
+  transform: translate(150%, 25%);
+}
+
+.downloadButton:visited {
+  color: inherit;
+}
+
+.downloadButton svg {
+  width: 1rem;
+  fill: var(--color-blue);
+  margin-bottom: .5rem;
+}
