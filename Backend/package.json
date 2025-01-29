@@ -1,0 +1,25 @@
+{
+  "name": "recettes-cuisine-backend",
+  "version": "1.0.0",
+  "description": "Recettes Cuisine Backend",
+  "main": "app.js",
+  "scripts": {
+    "Backend Dev": "nodemon server.js"
+  },
+  "author": {
+    "name": "Choupal",
+    "github": "https://github.com/choupal",
+    "website": "https://cddev.fr"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
+    "mongoose": "^8.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

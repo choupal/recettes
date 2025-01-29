@@ -1,0 +1,28 @@
+/* LOADING COMPONENT */
+.loadingContainer {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loadingHeader {
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  font-family: "RobotoMono", serif;
+  font-weight: normal;
+}
+
+@keyframes rotate {
+  0% {
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingContainer svg {
+  width: 2rem;
+  margin: 1rem auto;
+  fill: var(--color-text);
+  animation: rotate 2s linear infinite;
+}
