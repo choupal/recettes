@@ -1,21 +1,35 @@
 /* DOWNLOAD BUTTON */
 .downloadButtonContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 4rem auto;
+  margin: 6rem auto 0;
+  padding: 1rem 0;
+  width: 100%;
+  border-top: .2rem solid var(--color-text);
+  border-bottom: .2rem solid var(--color-text);
 }
 
 .downloadButton {
   text-decoration: none;
   color: inherit;
-  text-align: center;
+  font-family: 'RobotoMono', serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  font-family: 'RobotoMono', serif;
+  font-weight: bold;
+}
+
+@keyframes hoverAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .downloadButton::before, .downloadButton::after {
@@ -30,14 +44,14 @@
   content: '▫';
   bottom: 0;
   left: 0;
-  transform: translate(-150%, 25%);
+  transform: translate(-150%, -15%);
 }
 
 .downloadButton:hover::after {
   content: '▫';
   bottom: 0;
   right: 0;
-  transform: translate(150%, 25%);
+  transform: translate(150%, -15%);
 }
 
 .downloadButton:visited {
@@ -46,6 +60,11 @@
 
 .downloadButton svg {
   width: 1rem;
-  fill: var(--color-blue);
+  fill: var(--color-text);
   margin-bottom: .5rem;
+}
+
+.downloadButton p {
+  font-size: .75rem;
+  font-weight: normal;
 }

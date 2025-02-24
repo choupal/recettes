@@ -5,13 +5,20 @@ import MenuJour from "./MenuJour";
 import usePageTitle from "../hooks/usePageTitle";
 import Loading from "./Loading";
 import Recherche from "./Recherche";
+import { Recettes } from "../types.ts";
 
-const Accueil = ({ recettes }) => {
+type AccueilProps = {
+  recettes: Recettes;
+};
+
+const Accueil = (props: AccueilProps) => {
+  // Create variable from props
+  const recettes = props.recettes;
   // Get recettes
   const recettesJour = useRecetteJour(recettes);
   const menuJour = useMenuJour(recettes);
   // Manage the Page Title in HTML Head
-  usePageTitle({});
+  usePageTitle("");
 
   return (
     <div className={"accueilContainer"}>

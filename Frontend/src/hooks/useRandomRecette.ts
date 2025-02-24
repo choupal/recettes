@@ -1,10 +1,12 @@
+import {Recettes, RecettesJour, RecettesMenuJour} from "../types.ts";
+
 /**
  * Selects 2 random recettes from the provided recettes list array.
  * @function useRecetteJour
- * @param {array} recettes - An array containing the recettes list.
- * @return {object, object} - An object containing 2 recette objects - {recette1, recette2}.
+ * @param {Recettes} recettes - An array containing the recettes list.
+ * @return {RecettesJour} - An object containing 2 recette objects - {recette1, recette2}.
  */
-const useRecetteJour = (recettes) => {
+const useRecetteJour = (recettes: Recettes): RecettesJour => {
   // Pick a recette from the provided recettes list array
   const recette1 = recettes[Math.floor(Math.random() * recettes.length)];
   // Remove the picked recette from the recettes list array
@@ -19,10 +21,10 @@ const useRecetteJour = (recettes) => {
 /**
  * Selects 1 random recette from each recettes types from the provided recettes list array.
  * @function useMenuJour
- * @param {array} recettes - An array containing the recettes list.
- * @return {object, object, object} - An object containing 3 recette objects - {entree, plat, dessert} .
+ * @param {Recettes} recettes - An array containing the recettes list.
+ * @return {RecettesMenuJour} - An object containing 3 recette objects - {entree, plat, dessert} .
  */
-const useMenuJour = (recettes) => {
+const useMenuJour = (recettes: Recettes): RecettesMenuJour => {
   // Pick a recette from the entrée type
   const entrees = recettes.filter((recette) => recette.type === "entrée");
   const entree = entrees[Math.floor(Math.random() * entrees.length)];

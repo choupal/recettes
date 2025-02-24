@@ -1,42 +1,59 @@
 import { Link } from "react-router-dom";
-import usePageTitle from "../hooks/usePageTitle";
-import useSpaceToUnder from "../hooks/useSpaceToUnder";
 import "./RecettesList.css";
 import { useEffect, useState } from "react";
-import useSortRecettes from "../hooks/useSortRecettes";
-import Loading from "./Loading";
-import useConvertDuration from "../hooks/useConvertDuration";
+import Loading from "./Loading.js";
+import { Recettes } from "../types.ts";
+import usePageTitle from "../hooks/usePageTitle.ts";
+import { convertDuration } from "../utils/convertDuration.ts";
+import { spaceToUnder } from "../utils/stringManipulation.ts";
+import { sortRecettes } from "../utils/sortRecettes.ts";
 
-const RecettesList = ({ type, recettes }) => {
+interface RecettesListProps {
+  title: string;
+  recettes: Recettes;
+}
+
+const RecettesList = (props: RecettesListProps) => {
+  // Create variables for props
+  const title: string = props.title;
+  const recettes: Recettes = props.recettes;
+
+  // Scroll Back to Top when when location/title change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [title]);
+
   // Create sorting variables
-  const [sortedRecettes, setSortedRecettes] = useState();
-  const [sortingDir, setSortingDir] = useState("ASC");
-  const [sortingType, setSortingType] = useState("NOM");
+  const [sortingType, setSortingType] = useState<string>("NOM");
+  const [sortingDir, setSortingDir] = useState<string>("ASC");
+  const [sortedRecettes, setSortedRecettes] = useState<Recettes>(
+    sortRecettes(recettes, sortingType, sortingDir),
+  );
 
   // Sorting Button Handler
-  const handleSortingButton = (type, direction) => {
+  const handleSortingButton = (type: string, direction: string) => {
     setSortingDir(direction);
     setSortingType(type);
   };
 
   // Manage the Page Title in HTML Head
-  usePageTitle({ type });
+  usePageTitle(title);
 
   // Get Recettes list using sorting parameters
   useEffect(() => {
-    setSortedRecettes([...useSortRecettes(recettes, sortingType, sortingDir)]);
+    setSortedRecettes([...sortRecettes(recettes, sortingType, sortingDir)]);
   }, [recettes, sortingType, sortingDir]);
 
   return (
     <div className={"recettesListContainer"}>
-      <h1 className={"recetteListHeader"}>{type}</h1>
+      <h1 className={"recetteListHeader"}>{title}</h1>
       {/* SORTING BUTTONS CONTAINER*/}
       <div className={"sortingButtonContainer"}>
         {/* SORT BY NAME */}
         <button
           className={sortingType === "NOM" ? "button-active" : ""}
           onClick={() => {
-            sortingDir === "ASC"
+            return sortingDir === "ASC"
               ? handleSortingButton("NOM", "DESC")
               : handleSortingButton("NOM", "ASC");
           }}
@@ -62,7 +79,7 @@ const RecettesList = ({ type, recettes }) => {
         <button
           className={sortingType === "PERS" ? "button-active" : ""}
           onClick={() => {
-            sortingDir === "ASC"
+            return sortingDir === "ASC"
               ? handleSortingButton("PERS", "DESC")
               : handleSortingButton("PERS", "ASC");
           }}
@@ -88,7 +105,7 @@ const RecettesList = ({ type, recettes }) => {
         <button
           className={sortingType === "PREPA" ? "button-active" : ""}
           onClick={() => {
-            sortingDir === "ASC"
+            return sortingDir === "ASC"
               ? handleSortingButton("PREPA", "DESC")
               : handleSortingButton("PREPA", "ASC");
           }}
@@ -114,24 +131,22 @@ const RecettesList = ({ type, recettes }) => {
       {/* RECETTES LIST */}
       {recettes.length > 0 ? (
         <ul className={"recettesList"}>
-          {sortedRecettes?.map((recette) => (
+          {sortedRecettes.map((recette) => (
             <li key={recette.nom} className={"recette"}>
-              <Link to={`/recettes/${useSpaceToUnder(recette.nom)}`}>
+              <Link to={`/recettes/${spaceToUnder(recette.nom)}`}>
                 {recette.nom}
               </Link>
               <div className={"recetteInfos"}>
                 <p>️{recette.personnes} personnes</p>
                 <p>-</p>
-                <p>
-                  {useConvertDuration(recette.preparation, recette.cuisson)}
-                </p>
+                <p>{convertDuration(recette.preparation, recette.cuisson)}</p>
               </div>
               <hr />
             </li>
           ))}
         </ul>
       ) : (
-        <Loading color={"black"} />
+        <Loading />
       )}
     </div>
   );
