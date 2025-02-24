@@ -8,70 +8,66 @@ import NavBar from "./components/NavBar";
 import Accueil from "./components/Accueil";
 import RecettesList from "./components/RecettesList";
 import Recette from "./components/Recette";
-import Recherche from "./components/Recherche";
 import ErrorPage from "./components/ErrorPage";
-import useGetRecettes from "./hooks/useGetRecettes";
+import getRecettes from "./services/recettes";
+import { useGetTheme } from "./hooks/useGetTheme.ts";
 import { useEffect, useState } from "react";
+import { Recettes, RecetteType, Theme } from "./types.ts";
 
 const App = () => {
-  const [recettes, setRecettes] = useState([]);
+  const [recettes, setRecettes] = useState<Recettes>([]);
 
-  // Get Recettes list from DB with useGetRecettes Hook
+  // Get Recettes list from DB with getRecettes service
   useEffect(() => {
-    useGetRecettes().then((recettes) => setRecettes(recettes));
+    getRecettes().then((recettes) => setRecettes(recettes));
   }, []);
 
   // Create variables for every recettes types
-  const entrees = recettes.filter((recette) => recette.type === "entrée");
-  const plats = recettes.filter((recette) => recette.type === "plat");
-  const desserts = recettes.filter((recette) => recette.type === "dessert");
-  const autres = recettes.filter((recette) => recette.type === "autre");
-
-  // Get the Saved Theme from localStorage or Preferred Theme from browser settings
-  const getTheme = () => {
-    if (localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    } else {
-      return window.matchMedia("(prefers-color-scheme:dark)").matches
-        ? "dark"
-        : "light";
-    }
-  };
+  const entrees = recettes.filter(
+    (recette) => recette.type === RecetteType.Entree,
+  );
+  const plats = recettes.filter((recette) => recette.type === RecetteType.Plat);
+  const desserts = recettes.filter(
+    (recette) => recette.type === RecetteType.Dessert,
+  );
+  const autres = recettes.filter(
+    (recette) => recette.type === RecetteType.Autre,
+  );
 
   // Initialize Theme State, use stored/preferred theme from getTheme() as default state
-  const [theme, setTheme] = useState(getTheme());
+  const [theme, setTheme] = useState<Theme>(useGetTheme());
 
   // Set Dark Theme Function
-  const setDarkTheme = () => {
+  const setDarkTheme = (): void => {
     document.documentElement.setAttribute("data-bs-theme", "dark");
     localStorage.setItem("theme", "dark");
-    setTheme("dark");
+    setTheme(Theme.Dark);
   };
 
   // Set Light Theme Function
-  const setLightTheme = () => {
+  const setLightTheme = (): void => {
     document.documentElement.setAttribute("data-bs-theme", "light");
     localStorage.setItem("theme", "light");
-    setTheme("light");
+    setTheme(Theme.Light);
   };
 
   // Switch Theme Button Handler
-  const themeSwitcher = (theme) => {
-    theme === "dark" ? setLightTheme() : setDarkTheme();
+  const themeSwitcher = (theme: Theme): void => {
+    return theme === "dark" ? setLightTheme() : setDarkTheme();
   };
 
   // Watch for Browser Settings changes && switch Theme accordingly
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (event) => {
-      const preferredTheme = event.matches ? "dark" : "light";
+      const preferredTheme = event.matches ? Theme.Dark : Theme.Light;
       localStorage.setItem("theme", preferredTheme);
       setTheme(preferredTheme);
     });
 
   // Watch for Theme Settings changes && switch Theme accordingly
   useEffect(() => {
-    theme === "dark" ? setDarkTheme() : setLightTheme();
+    return theme === "dark" ? setDarkTheme() : setLightTheme();
   }, [theme]);
 
   return (
@@ -83,27 +79,23 @@ const App = () => {
           <Route path={"/"} element={<Accueil recettes={recettes} />} />
           <Route
             path={"/entrees"}
-            element={<RecettesList type={"Entrées"} recettes={entrees} />}
+            element={<RecettesList title={"Entrées"} recettes={entrees} />}
           />
           <Route
             path={"/plats"}
-            element={<RecettesList type={"Plats"} recettes={plats} />}
+            element={<RecettesList title={"Plats"} recettes={plats} />}
           />
           <Route
             path={"/desserts"}
-            element={<RecettesList type={"Desserts"} recettes={desserts} />}
+            element={<RecettesList title={"Desserts"} recettes={desserts} />}
           />
           <Route
             path={"/autres"}
-            element={<RecettesList type={"Autres"} recettes={autres} />}
+            element={<RecettesList title={"Autres"} recettes={autres} />}
           />
           <Route
             path={"/recettes/:nom"}
             element={<Recette recettes={recettes} />}
-          />
-          <Route
-            path={"/recherche"}
-            element={<Recherche recettes={recettes} />}
           />
           <Route path="/erreur" element={<ErrorPage />} />
           {/* Redirect any unknown routes/pages to the erreur route/page */}

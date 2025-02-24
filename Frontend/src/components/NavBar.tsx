@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <div className="navBar">

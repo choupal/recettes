@@ -1,9 +1,9 @@
 /**
  * Converts duration in minutes to hours or days if needed.
  * Can use only 1 parameter if one is null/not needed.
- * @function useConvertDuration
- * @param {number||null} preparation - Preparation time in minutes.
- * @param {number||null} cuisson - Cuisson time in minutes.
+ * @function convertDuration
+ * @param {number|null} preparation - Preparation time in minutes.
+ * @param {number|null} cuisson - Cuisson time in minutes.
  * @return {string} - A string with the converted duration.
  * @example
  * useConvertDuration(20,10) // returns "30 Minutes"
@@ -11,12 +11,15 @@
  * useConvertDuration(null, 2880) // returns "2 Jours"
  */
 
-const useConvertDuration = (preparation, cuisson) => {
+export const convertDuration = (
+  preparation: number | null,
+  cuisson: number | null,
+): string => {
   // Convert to Days function
-  const convertToDays = (num1, num2) =>
+  const convertToDays = (num1: number, num2?: number): number =>
     Math.ceil((num1 + (num2 ? num2 : 0)) / 60 / 24);
   // Convert to Hours function
-  const convertToHours = (num1, num2) =>
+  const convertToHours = (num1: number, num2?: number): number =>
     Math.ceil((num1 + (num2 ? num2 : 0)) / 60);
 
   // When there are 2 parameters
@@ -63,6 +66,5 @@ const useConvertDuration = (preparation, cuisson) => {
       return `${cuisson} Minutes`;
     }
   }
+  return "";
 };
-
-export default useConvertDuration;
