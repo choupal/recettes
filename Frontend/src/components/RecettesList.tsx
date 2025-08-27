@@ -137,8 +137,10 @@ const RecettesList = (props: RecettesListProps) => {
                 {recette.nom}
               </Link>
               <div className={"recetteInfos"}>
-                <p>️{recette.personnes} personnes</p>
-                <p>-</p>
+                {recette.personnes !== 0 && (
+                  <p>️{recette.personnes} personnes</p>
+                )}
+                {recette.personnes !== 0 && <p>-</p>}
                 <p>{convertDuration(recette.preparation, recette.cuisson)}</p>
               </div>
               <hr />

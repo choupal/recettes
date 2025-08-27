@@ -16,7 +16,9 @@ const RecetteJour = (props: RecetteJourProps) => {
       <Link to={`/recettes/${spaceToUnder(recette.nom)}`}>{recette.nom}</Link>
       <h2 className={recette.type}>{recette.type}</h2>
       <p>
-        <strong>{recette.personnes} Personnes</strong>
+        {recette.personnes !== 0 && (
+          <strong>{recette.personnes} Personnes</strong>
+        )}
       </p>
       <p>
         <strong>Préparation: </strong>

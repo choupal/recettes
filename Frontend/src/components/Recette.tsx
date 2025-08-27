@@ -53,9 +53,11 @@ const Recette = (props: RecetteProps) => {
           <strong>Cuisson: </strong>
           {convertDuration(null, recette.cuisson)}
         </p>
-        <p>-</p>
+        {recette.personnes !== 0 && <p>-</p>}
         <p>
-          <strong>{recette.personnes} Personnes</strong>
+          {recette.personnes !== 0 && (
+            <strong>{recette.personnes} Personnes</strong>
+          )}
         </p>
       </div>
       {/* RECETTE INSTRUCTIONS */}
